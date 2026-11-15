@@ -214,7 +214,8 @@
   .rapides button{background:#f3eefc;box-shadow:none;border-radius:999px;font-weight:600}
   .valider{background:#6a2fc0;box-shadow:none}
   .onglet{font-size:13px;padding:9px 4px}
-  .onglet:last-child{flex:1.5}
+  .onglets{flex-wrap:wrap}
+  .onglet{flex:1 1 auto;white-space:nowrap}
   /* recherche de titres */
   .rechbar{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:3px 12px;margin-bottom:10px;border:2px solid transparent}
   .rechbar:focus-within{border-color:var(--or)}
@@ -339,6 +340,37 @@ const CATALOGUE = {
     ["🔖","Marque-page Legami",3.50],["🎒","Trousse Legami",12.90],["🧽","Gommes Legami",3.90],
     ["✏️","Crayon Legami",2.90],["📏","Règle Legami",3.50],["🗓️","Agenda Legami",14.90],
     ["💡","Lampe de lecture Legami",11.90]
+  ],
+  "💄 Beauté": [
+    ["💄","Rouge à lèvres rouge",7.90],["💄","Rouge à lèvres rose",7.90],["💋","Gloss transparent",5.50],
+    ["💋","Gloss pailleté",5.90],["💄","Baume à lèvres",3.50],["🖍️","Crayon à lèvres",4.20],
+    ["👁️","Mascara noir",8.90],["👁️","Mascara waterproof",9.90],["🖊️","Eye-liner noir",6.50],
+    ["✏️","Crayon à yeux",3.90],["🪮","Brosse à sourcils",3.20],["🎨","Palette de fards à paupières",14.90],
+    ["✨","Fard à paupières pailleté",4.50],["🌸","Blush rose",8.50],["🍑","Blush pêche",8.50],
+    ["☀️","Poudre bronzante",9.90],["🤍","Poudre libre",10.90],["🧴","Fond de teint",12.90],
+    ["🧴","Anticernes",8.90],["🧴","Base de teint",9.50],["✨","Highlighter",8.90],
+    ["💅","Vernis à ongles rose",3.90],["💅","Vernis à ongles rouge",3.90],["💅","Vernis pailleté",4.50],
+    ["🧴","Dissolvant",2.90],["🖌️","Pinceau fond de teint",6.50],["🖌️","Pinceau blush",5.50],
+    ["🖌️","Pinceau fard à paupières",4.50],["🖌️","Pinceau lèvres",3.50],["🧽","Éponge de maquillage",3.90],
+    ["🪞","Miroir de poche",4.90],["👜","Trousse de maquillage",9.90],["🎨","Coffret de maquillage",24.90],
+    ["🧼","Démaquillant",5.90],["🧴","Crème hydratante",8.90],["🌹","Eau de toilette",19.90],
+    ["💆","Masque visage",2.90],["🎀","Élastiques à cheveux",2.50],["🪮","Brosse à cheveux",7.90],
+    ["🎀","Barrettes",3.20]
+  ],
+  "🛒 Supermarché": [
+    ["🍎","Pommes",2.90],["🍌","Bananes",1.90],["🍊","Oranges",2.50],["🍓","Fraises",3.90],
+    ["🍇","Raisin",3.50],["🍐","Poires",2.80],["🍑","Pêches",3.60],["🍋","Citrons",1.80],
+    ["🍉","Pastèque",4.50],["🍍","Ananas",3.20],["🥝","Kiwis",2.60],["🍒","Cerises",5.90],
+    ["🥥","Noix de coco",2.20],["🥑","Avocat",1.40],["🍅","Tomates",2.90],["🥕","Carottes",1.50],
+    ["🥔","Pommes de terre",2.20],["🥒","Concombre",1.10],["🥦","Brocoli",1.90],["🌽","Maïs",1.30],
+    ["🥬","Salade",1.20],["🧅","Oignons",1.60],["🧄","Ail",0.90],["🍆","Aubergine",1.80],
+    ["🫑","Poivron",1.50],["🍄","Champignons",2.40],["🥖","Baguette",1.10],["🥐","Croissant",1.30],
+    ["🍞","Pain de mie",2.20],["🥛","Lait",1.20],["🧀","Fromage",3.90],["🧈","Beurre",2.60],
+    ["🥚","Œufs",3.20],["🍦","Yaourt",2.10],["🍗","Poulet",7.90],["🥩","Steak",6.90],
+    ["🐟","Poisson",8.90],["🍝","Pâtes",1.40],["🍚","Riz",2.30],["🍕","Pizza",4.90],
+    ["🥫","Soupe",2.50],["🍫","Chocolat",1.90],["🍪","Biscuits",2.20],["🍯","Miel",4.90],
+    ["🥜","Cacahuètes",2.40],["🍿","Pop-corn",1.80],["🍬","Bonbons",1.50],["🧃","Jus de fruits",1.90],
+    ["💧","Eau",0.80],["☕","Café",3.90],["🍵","Thé",2.90],["🧂","Sel",0.70]
   ],
   "⭐ Stickers & coloriages": [
     ["⭐","Planche d'autocollants",1.90],["🦄","Autocollants licornes",2.50],["🐱","Autocollants chats",2.50],
