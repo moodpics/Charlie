@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La librairie de Charlie</title>
+<title>La librairie magique de Charlie</title>
 <style>
   :root{
     --v1:#2e1065; --v2:#5b21b6; --v3:#7c3aed; --v4:#a78bfa; --v5:#ede9fe;
@@ -229,14 +229,29 @@
   .produit.part{animation:part .22s ease-in forwards;pointer-events:none}
   @keyframes part{to{opacity:0;transform:scale(.8)}}
   .produit.trouve{box-shadow:0 0 0 3px var(--or),0 10px 22px rgba(0,0,0,.25)}
+  /* titre en grand + coeur sur le i */
+  h1{font-size:clamp(28px,4.2vw,50px);line-height:1.15;letter-spacing:.3px;margin-bottom:2px}
+  h1 span{font-style:italic;color:#f6d58e}
+  h1 .ci{position:relative;display:inline-block;font-style:normal;color:inherit}
+  h1 .ci b{position:absolute;left:50%;top:-.02em;transform:translateX(-50%);font-size:.46em;line-height:1;color:#f472b6;font-weight:400;font-style:normal}
+  /* scotch fait main */
+  #scotch{position:fixed;top:0;right:0;width:0;height:0;z-index:900;pointer-events:none;
+    filter:drop-shadow(1px 3px 3px rgba(70,40,0,.35)) drop-shadow(0 0 1px rgba(70,40,0,.3))}
+  #scotch .bande{position:absolute;left:-252px;top:-18px;width:420px;height:120px;transform:rotate(45deg);
+    background:
+      linear-gradient(100deg,rgba(255,255,255,0) 0 26%,rgba(255,255,255,.38) 27% 29%,rgba(255,255,255,0) 30% 58%,rgba(255,255,255,.26) 59% 60.5%,rgba(255,255,255,0) 62% 84%,rgba(90,60,10,.10) 85% 86%,rgba(255,255,255,0) 87%),
+      repeating-linear-gradient(90deg,rgba(120,90,30,.06) 0 2px,rgba(255,255,255,.06) 2px 5px),
+      linear-gradient(180deg,rgba(238,217,152,.9),rgba(226,200,133,.88) 55%,rgba(232,208,142,.9));}
+  #scotch .main{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%) rotate(-1.5deg);white-space:nowrap;
+    font-family:"Bradley Hand","Noteworthy","Segoe Print","Marker Felt","Comic Sans MS",cursive;font-size:25px;font-weight:700;color:#2b2370;letter-spacing:.5px}
+  #scotch .main i{display:inline-block;font-style:normal}
 </style>
 </head>
 <body>
 <div class="chats" id="chats"></div>
 <div class="caisse">
   <header>
-    <h1>La librairie de Charlie, <span>meilleure vendeuse du monde</span></h1>
-    <div class="sous">Touche un article pour l'ajouter · change le prix en tapant dessus</div>
+    <h1>La librairie <span>magique</span> de Charl<span class="ci">ı<b>♥</b></span>e</h1>
     <div id="licorne" title="Coucou !">🦄</div>
   </header>
 
@@ -265,6 +280,7 @@
 
 <div class="voile" id="voile"><div class="modale" id="modale"></div></div>
 
+<div id="scotch" aria-hidden="true"><div class="bande"><span class="main" id="main">papa t’aime</span></div></div>
 <script>
 const CATALOGUE = {
   "📖 Livres disponibles": [
@@ -422,7 +438,7 @@ const total=()=>Math.round(panier.reduce((s,l)=>s+l.prix*l.qte,0)*100)/100;
 
 function dessinerTicket(){
   if(!panier.length){
-    ticketEl.innerHTML='<div class="vide">Le panier est vide…<br>Choisis des articles ! 🛒</div>';
+    ticketEl.innerHTML='<div class="vide">Le panier est vide</div>';
   }else{
     ticketEl.innerHTML="";
     panier.forEach((l,i)=>{
@@ -550,7 +566,22 @@ dessinerOnglets();dessinerGrille();dessinerTicket();
     r.classList.toggle("actif",!!(e.target.closest&&e.target.closest(clic)));
   });
   document.addEventListener("mouseleave",()=>r.classList.remove("visible"));
-  document.addEventListener("mouseenter",()=>r.classList.add("visible"));
+})();
+/* scotch : bords irréguliers et écriture à la main */
+(function(){
+  const b=document.querySelector("#scotch .bande");
+  let seed=23;const r=()=>(seed=(seed*9301+49297)%233280)/233280;
+  const n=30,haut=[],bas=[];
+  for(let i=0;i<=n;i++){
+    const x=(i/n*100).toFixed(2);
+    haut.push(x+"% "+(r()*3+(r()>.85?2.5:0)).toFixed(2)+"%");
+    bas.push(x+"% "+(100-r()*5-(r()>.8?3:0)).toFixed(2)+"%");
+  }
+  b.style.clipPath="polygon("+haut.join(",")+","+bas.reverse().join(",")+")";
+  const t=document.getElementById("main"),txt=t.textContent;t.textContent="";
+  [...txt].forEach(c=>{const e=document.createElement("i");e.textContent=c;
+    e.style.transform="translateY("+((r()*4-2).toFixed(1))+"px) rotate("+((r()*10-5).toFixed(1))+"deg)";
+    t.appendChild(e)});
 })();
 </script>
 </body>
